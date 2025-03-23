@@ -23,10 +23,10 @@ def fetch_data() -> dict | None:
     else:
         return None
     
-def parse_data_for_temperature(data) -> float:
+def parse_data_for_temperature(data: dict) -> float:
     return float(data["main"]["temp"])
 
-def get_current_date():
+def get_current_date() -> str:
     date = datetime.datetime.now()
     
     year = date.strftime("%Y")
@@ -35,13 +35,13 @@ def get_current_date():
     
     return year + "-" + month + "-" + day
 
-def export_data_to_database(parsed_data, date):
-    connection = sqlite3.connect("rainham_weather.db")
+def export_data_to_database(parsed_data: float, date: str) -> None:
+    connection = sqlite3.connect("/Users/michael/Python/Weather-Analysis/rainham_weather.db")
     cursor = connection.cursor()
     
     cursor.execute("INSERT INTO rainham_weather (temperature  ,date) VALUES (?, ?)", (parsed_data, date))
     connection.commit()
 
-
-parsed_data = parse_data_for_temperature(fetch_data())
+data = fetch_data()
+parsed_data = parse_data_for_temperature(data)
 export_data_to_database(parsed_data ,get_current_date()) 
