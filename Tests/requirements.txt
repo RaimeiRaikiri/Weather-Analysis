@@ -1,0 +1,13 @@
+Weather analysis 
+
+[] In one script
+    [] Take in Weather API data daily
+    [] Parse json 
+    [] Store data in database 
+        [] Temperature 
+        [] Date
+
+[] Main
+    [] Extract from database - 30 entries minimum 
+    [] Find average, minimum and maximum
+    [] Linear regression to predict future weather 
